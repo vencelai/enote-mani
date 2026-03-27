@@ -1,0 +1,74 @@
+management: 
+   security: 
+      enabled: false
+endpoints:
+   shutdown:
+      enabled: true
+server:
+   port: 8621
+   servlet: 
+      context-path: /mani
+      
+spring:
+   application:
+      name: mani  #注意不可使用下底線
+   datasource:
+      hikari:
+         connectionTimeout: 30000
+         idleTimeout: 600000
+         maxLifetime: 1800000
+         minimumIdle: 10
+         maximum-pool-size: 10
+      url: jdbc:mysql://192.168.30.25:3306/mani-cltc?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Taipei&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: pgadmin
+      password: 42835355
+      driver-class-name: com.mysql.jdbc.Driver
+   jpa:
+      open-in-view: false
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      show-sql: true
+      #hibernate:
+      #  ddl-auto: update
+   servlet:
+      multipart:
+        max-file-size:  200MB
+        max-request-size:  600MB      
+      
+ribbon:
+  eureka:
+    enabled: true
+    
+jwt:
+  secret: bt-jwt     
+    
+#自動從pom檔注入相關數據    
+info:  
+  app:  
+    name: "@project.name@"  
+    description: "@project.description@"  
+    version: "@project.version@"  
+    spring-boot-version: "@project.parent.version@"
+
+#上傳日誌
+uploadLog:
+  #保留天數
+  reserveDay: 15
+  #失敗自動重新上傳 y/n
+  failAutoUpload: n
+  
+#新增客戶用的表單id
+customer:
+  newCustomerFormId: 22  
+  
+#曼麗 ERP 端  
+erp:
+  api:
+    url: http://125.228.142.126:83
+    # API契約代碼(固定值)
+    vid: TKH0290
+    # API 呼叫端外部IP
+    vip: 61.220.182.208
+    # 公用帳號
+    public_uid: sysapi
+    # 公用密碼
+    public_pwd: "!W$q23e"

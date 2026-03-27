@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml> 
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/logs/broton-enote-mani/broton-enote-mani.log</File>
+        <encoder>
+            <pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 新增.gz 歷史日誌會啟用壓縮 大大縮小日誌檔案所佔空間 -->
+            <fileNamePattern>/logs/broton-enote-mani/broton-enote-mani.log.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <!-- 設定依據天數保留檔案 -->
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxFileSize>200MB</maxFileSize> <!-- 依據大小切割文件大小 -->
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="com.broton.ktvConsumer" level="DEBUG" />
+	<!-- trace, debug, info, warn, error -->
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

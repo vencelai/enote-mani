@@ -1,0 +1,68 @@
+management:
+   security:
+      enabled: false
+endpoints:
+   shutdown:
+      enabled: true
+server:
+   port: 8621
+   servlet: 
+      context-path: /mani
+      
+spring:
+   application:
+      name: mani  #注意不可使用下底線
+   datasource:
+      hikari:
+         connectionTimeout: 30000
+         idleTimeout: 600000
+         maxLifetime: 1800000
+         minimumIdle: 10
+         maximum-pool-size: 10
+      url: jdbc:mysql://127.0.0.1:3306/mani-cltc?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Taipei&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 1qaz2wsx
+      driver-class-name: com.mysql.jdbc.Driver
+   jpa:
+      open-in-view: false
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      show-sql: false
+   servlet:
+      multipart:
+        max-file-size:  200MB
+        max-request-size:  600MB      
+      
+jwt:
+  secret: bt-jwt     
+    
+#自動從pom檔注入相關數據    
+info:  
+  app:  
+    name: "broton-enote-mani"  
+    description: "Parent pom providing dependency and plugin management for applications built with Maven"  
+    version: "1.0.4"  
+    spring-boot-version: "2.5.8"
+    
+#上傳日誌
+uploadLog:
+  #保留天數
+  reserveDay: 90
+  #失敗自動重新上傳 y/n
+  failAutoUpload: y
+  
+#新增客戶用的表單id
+customer:
+  newCustomerFormId: 22  
+  
+#曼麗 ERP 端
+erp:
+  api:
+    url: http://127.0.0.1:83
+    # API契約代碼(固定值)
+    vid: TKH0290
+    # API 呼叫端外部IP
+    vip: 127.0.0.1
+        # 公用帳號
+    public_uid: sysapi
+        # 公用密碼
+    public_pwd: "!W$q23e"          
