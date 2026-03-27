@@ -1,3 +1,3 @@
 # broton-enote-mani
 
-# 曼麗醫美 AP Server
+# 醫美 AP Server
